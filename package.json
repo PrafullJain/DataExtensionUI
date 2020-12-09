@@ -1,0 +1,29 @@
+{
+  "name": "dataextensionapp",
+  "version": "1.0.0",
+  "description": "Nodejs App hosted on heroku",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aviralkakkar/dataExtensionApp.git"
+  },
+  "author": "Aviral Kakkar aviralkakkar3@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aviralkakkar/dataExtensionApp/issues"
+  },
+  "homepage": "https://github.com/Aviralkakkar/dataExtensionApp#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "request": "^2.81.0",
+    "body-parser": "^1.18.2"
+  },
+  "engines": {
+    "node": "v14.15.0"
+  }
+
+}
