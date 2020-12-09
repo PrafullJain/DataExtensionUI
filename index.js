@@ -41,14 +41,10 @@ app.post('/PostData', (req, res) => {
 				headers: {
 					'content-type': 'text/xml',
 					'Authorization':'Bearer '+body.access_token,
-				},body:data
 				},
 				url: 'https://mc6vgk-sxj9p08pqwxqz9hw9-4my.soap.marketingcloudapis.com/Service.asmx',
-					     (err, response) => {
-    console.log('response', response.body)
-})
-				/*
-					     json:true
+				body:data,
+				json:true
 				},function(error2,response2,body2){
 					
 					console.log('\nSOAP Body'+(body));
@@ -58,8 +54,7 @@ app.post('/PostData', (req, res) => {
 					console.log('\nSOAP Error'+JSON.stringify(error2));
 					console.log('\nSOAP Response'+JSON.stringify(response2));
 					
-				})*/
-			
+				})			
 				const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
 				res.sendFile(ind2);
 				console.log("Access" + body.access_token);
