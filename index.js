@@ -69,8 +69,8 @@ app.post('/PostData', (req, res) => {
 
 const url = 'https://mc6vgk-sxj9p08pqwxqz9hw9-4my.soap.marketingcloudapis.com/Service.asmx'
 
-const body = request.post(url, opts, (err, response) => {
-    console.log('response', response.body)
+const xbod = request.post(url, opts, (err, response) => {
+    console.log('response', response.xbod)
 })
 				const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
 				res.sendFile(ind2);
