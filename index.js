@@ -41,6 +41,7 @@ app.post('/PostData', (req, res) => {
 				headers: {
 					'content-type': 'text/xml',
 					'Authorization':'Bearer '+body.access_token,
+					SOAPAction: 'runTransaction'
 				},
 				url: 'https://mc6vgk-sxj9p08pqwxqz9hw9-4my.soap.marketingcloudapis.com/Service.asmx',
 				body:data,
