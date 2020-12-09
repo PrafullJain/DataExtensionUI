@@ -4,7 +4,7 @@ const path = require('path');
 var http = require('http');
 const fs = require('fs')
 const port = process.env.PORT || 3000
-var request = require('request');
+const request = require('request');
 app.get("*", (req, res) => {
 	const ind = path.join(__dirname, 'public', 'index.html');
 	res.sendFile(ind);
@@ -36,16 +36,19 @@ app.post('/PostData', (req, res) => {
 				},
 				json: true
 			}, function(error, response, body) {
-				var data='<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><s:Header><a:Actions:mustUnderstand="1">Retrieve</a:Action><a:MessageID>urn:uuid:7e0cca04-57bd-4481-864c-6ea8039d2ea0</a:MessageID><a:ReplyTo>       <a:Address>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</a:Address></a:ReplyTo><a:To s:mustUnderstand="1">https://mc6vgk-sxj9p08pqwxqz9hw9-4my.soap.marketingcloudapis.com/Service.asmx</a:To>      <fueloauth xmlns="http://exacttarget.com">'+body.access_token+'</fueloauth></s:Header><s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">     <RetrieveRequestMsg xmlns="http://exacttarget.com/wsdl/partnerAPI"> <RetrieveRequest><ObjectType>DataExtension</ObjectType> <Properties>CustomerKey</Properties><Properties>Name</Properties><Properties>DataExtension.ObjectID</Properties> <Properties>IsSendable</Properties>  <Properties>CategoryID</Properties>  	<Filter xsi:type="SimpleFilterPart"> <Property>CategoryID</Property><SimpleOperator>equals</SimpleOperator><Value>29130</Value></Filter>    </RetrieveRequest> </RetrieveRequestMsg> </s:Body></s:Envelope>';
-				data=JSON.stringify(data);
+				var data=`<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><s:Header><a:Actions:mustUnderstand="1">Retrieve</a:Action><a:MessageID>urn:uuid:7e0cca04-57bd-4481-864c-6ea8039d2ea0</a:MessageID><a:ReplyTo>       <a:Address>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</a:Address></a:ReplyTo><a:To s:mustUnderstand="1">https://mc6vgk-sxj9p08pqwxqz9hw9-4my.soap.marketingcloudapis.com/Service.asmx</a:To>      <fueloauth xmlns="http://exacttarget.com">'+body.access_token+'</fueloauth></s:Header><s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">     <RetrieveRequestMsg xmlns="http://exacttarget.com/wsdl/partnerAPI"> <RetrieveRequest><ObjectType>DataExtension</ObjectType> <Properties>CustomerKey</Properties><Properties>Name</Properties><Properties>DataExtension.ObjectID</Properties> <Properties>IsSendable</Properties>  <Properties>CategoryID</Properties>  	<Filter xsi:type="SimpleFilterPart"> <Property>CategoryID</Property><SimpleOperator>equals</SimpleOperator><Value>29130</Value></Filter>    </RetrieveRequest> </RetrieveRequestMsg> </s:Body></s:Envelope>`;
 				request.post({
 				headers: {
 					'content-type': 'text/xml',
 					'Authorization':'Bearer '+body.access_token,
+				},body:data
 				},
 				url: 'https://mc6vgk-sxj9p08pqwxqz9hw9-4my.soap.marketingcloudapis.com/Service.asmx',
-				body:data,
-				json:true
+					     (err, response) => {
+    console.log('response', response.body)
+})
+				/*
+					     json:true
 				},function(error2,response2,body2){
 					
 					console.log('\nSOAP Body'+(body));
@@ -55,7 +58,7 @@ app.post('/PostData', (req, res) => {
 					console.log('\nSOAP Error'+JSON.stringify(error2));
 					console.log('\nSOAP Response'+JSON.stringify(response2));
 					
-				})
+				})*/
 			
 				const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
 				res.sendFile(ind2);
@@ -64,6 +67,7 @@ app.post('/PostData', (req, res) => {
 				console.log(clientSec);
 				//  res.send(clientSec);   
 			})
+	
 });
 app.listen(port, () => {
       console.log('Example app is listening on port http://localhost:${port}');
