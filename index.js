@@ -36,7 +36,8 @@ app.post('/PostData', (req, res) => {
 				},
 				json: true
 			}, function(error, response, body) {
-				var data=`<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><s:Header><a:Actions:mustUnderstand="1">Retrieve</a:Action><a:MessageID>urn:uuid:7e0cca04-57bd-4481-864c-6ea8039d2ea0</a:MessageID><a:ReplyTo>       <a:Address>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</a:Address></a:ReplyTo><a:To s:mustUnderstand="1">https://mc6vgk-sxj9p08pqwxqz9hw9-4my.soap.marketingcloudapis.com/Service.asmx</a:To>      <fueloauth xmlns="http://exacttarget.com">'+body.access_token+'</fueloauth></s:Header><s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">     <RetrieveRequestMsg xmlns="http://exacttarget.com/wsdl/partnerAPI"> <RetrieveRequest><ObjectType>DataExtension</ObjectType> <Properties>CustomerKey</Properties><Properties>Name</Properties><Properties>DataExtension.ObjectID</Properties> <Properties>IsSendable</Properties>  <Properties>CategoryID</Properties>  	<Filter xsi:type="SimpleFilterPart"> <Property>CategoryID</Property><SimpleOperator>equals</SimpleOperator><Value>29130</Value></Filter>    </RetrieveRequest> </RetrieveRequestMsg> </s:Body></s:Envelope>`;
+				const data=`<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><s:Header><a:Actions:mustUnderstand="1">Retrieve</a:Action><a:MessageID>urn:uuid:7e0cca04-57bd-4481-864c-6ea8039d2ea0</a:MessageID><a:ReplyTo>       <a:Address>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</a:Address></a:ReplyTo><a:To s:mustUnderstand="1">https://mc6vgk-sxj9p08pqwxqz9hw9-4my.soap.marketingcloudapis.com/Service.asmx</a:To>      <fueloauth xmlns="http://exacttarget.com">'+body.access_token+'</fueloauth></s:Header><s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">     <RetrieveRequestMsg xmlns="http://exacttarget.com/wsdl/partnerAPI"> <RetrieveRequest><ObjectType>DataExtension</ObjectType> <Properties>CustomerKey</Properties><Properties>Name</Properties><Properties>DataExtension.ObjectID</Properties> <Properties>IsSendable</Properties>  <Properties>CategoryID</Properties>  	<Filter xsi:type="SimpleFilterPart"> <Property>CategoryID</Property><SimpleOperator>equals</SimpleOperator><Value>29130</Value></Filter>    </RetrieveRequest> </RetrieveRequestMsg> </s:Body></s:Envelope>`;
+				/*
 				request.post({
 				headers: {
 					'content-type': 'text/xml',
@@ -55,7 +56,22 @@ app.post('/PostData', (req, res) => {
 					console.log('\nSOAP Error'+JSON.stringify(error2));
 					console.log('\nSOAP Response'+JSON.stringify(response2));
 					
-				})			
+				})	
+				*/
+				
+				const opts = {
+    body: data,
+    headers: {
+        'Content-Type': 'text/xml; charset=utf-8',
+        SOAPAction: 'runTransaction'
+    }
+}
+
+const url = 'https://mc6vgk-sxj9p08pqwxqz9hw9-4my.soap.marketingcloudapis.com/Service.asmx'
+
+const body = request.post(url, opts, (err, response) => {
+    console.log('response', response.body)
+})
 				const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
 				res.sendFile(ind2);
 				console.log("Access" + body.access_token);
