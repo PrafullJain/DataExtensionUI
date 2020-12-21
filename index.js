@@ -45,6 +45,11 @@ axios
   .then(res => {
     console.log(`statusCode: ${res.statusCode}`)
     console.log(res)
+	const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
+				res.sendFile(ind2);
+				//console.log("Access" + body.access_token);
+				//console.log("response" + response);
+				//console.log(clientSec);
   })
   .catch(error => {
     console.error(error)
