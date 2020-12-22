@@ -23,37 +23,38 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(bodyParser());
 
-app.post('/PostData', (req, res) => {
-			const clientSec = req.body.clientSecret;
-			const clientId = req.body.clientId;
+let axiosConfig = {
+  headers: {
+					'content-type': 'application/json'
+				}
+};
 	var postData = {
   'client_id': '3pj0hhotbu0t2c62lrzib020', //pass Client ID
 					'client_secret': '82Z6UD4Zos80P1G6csqsrdaq', //pass Client Secret
 					'grant_type': 'client_credentials',
 					'account_id': '514010252'
 };
+async function getJSONAsync(){
+  let json = await axios.post('https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com/v2/token',postData,axiosConfig );
+  console.log('after the call to service');
+  return json;
+}
 
+
+
+
+app.post('/PostData', (req, res) => {
+			const clientSec = req.body.clientSecret;
+			const clientId = req.body.clientId;
 	
-	let axiosConfig = {
-  headers: {
-					'content-type': 'application/json'
-				}
-};
-	
-axios
-  .post('https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com/v2/token',postData,axiosConfig )
-  .then(res => {
-    console.log(`statusCode: ${res.statusCode}`)
-    console.log(res)
 	const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
+		let abc = await getJSONAsync();
+   console.log('>>>>>>>>>>> abc', abc);
 				res.sendFile(ind2);
 				//console.log("Access" + body.access_token);
 				//console.log("response" + response);
 				//console.log(clientSec);
-  })
-  .catch(error => {
-    console.error(error)
-  })
+
 
 	/*
 			request.post({
