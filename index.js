@@ -23,35 +23,31 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(bodyParser());
 
-let axiosConfig = {
-  headers: {
-					'content-type': 'application/json'
-				}
-};
-	var postData = {
-  'client_id': '3pj0hhotbu0t2c62lrzib020', //pass Client ID
-					'client_secret': '82Z6UD4Zos80P1G6csqsrdaq', //pass Client Secret
-					'grant_type': 'client_credentials',
-					'account_id': '514010252'
-};
-async function getJSONAsync(){
-  let json = await axios.post('https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com/v2/token',postData,axiosConfig );
-  console.log('after the call to service');
-  return json;
+const getToken = async (clientid, clientSecret, url) => {
+   var formData = new FormData();
+   formData.append('client_id', clientid)
+   formData.append('client_secret', clientSecret)
+   formData.append('grant_type', 'client_credentials')
+   const tokenResponse = await axios({
+      method: 'post',
+      url: `${url}v2/token`,
+      data: formData,
+      headers: {
+         'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
+      },
+   })
+   return tokenResponse.data.access_token
 }
 
-
-
-
 app.post('/PostData', (req, res) => {
-			const clientSec = req.body.clientSecret;
-			const clientId = req.body.clientId;
+	try {
+		const { clientId, clientSecret, url } = req.body;
+      const token = await getToken(clientId, clientSecret, url);
+		
+			
 	
 	const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
-		(async()=>{
-   let abc = await getJSONAsync();
-   console.log('>>>>>>>>>>> abc', abc);
-})();
+		
 				res.sendFile(ind2);
 				//console.log("Access" + body.access_token);
 				//console.log("response" + response);
