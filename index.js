@@ -48,8 +48,10 @@ app.post('/PostData', (req, res) => {
 			const clientId = req.body.clientId;
 	
 	const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
-		let abc = await getJSONAsync();
+		(async()=>{
+   let abc = await getJSONAsync();
    console.log('>>>>>>>>>>> abc', abc);
+})();
 				res.sendFile(ind2);
 				//console.log("Access" + body.access_token);
 				//console.log("response" + response);
