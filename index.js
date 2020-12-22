@@ -42,8 +42,11 @@ const getToken = async (clientid, clientSecret, url) => {
 app.post('/PostData', (req, res) => {
 	try {
 		const { clientId, clientSecret, url } = req.body;
+		(async function(){
+
       const token = await getToken(clientId, clientSecret, url);
-		
+		})();
+
 			
 	
 	const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
