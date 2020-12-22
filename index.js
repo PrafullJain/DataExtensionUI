@@ -6,6 +6,8 @@ const fs = require('fs')
 const port = process.env.PORT || 3000
 const request = require('request');
 const axios = require('axios');
+const FormData = require('form-data');
+
 
 app.get("*", (req, res) => {
 	const ind = path.join(__dirname, 'public', 'index.html');
