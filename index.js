@@ -51,12 +51,14 @@ app.post('/PostData', (req, res) => {
 		(async function(){
 
       const token = await getToken(clientId, clientSecret, url);
+			console.log(token);
 		})();
 
 			
 	
 	const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
-		
+					console.log(token);
+
 				res.sendFile(ind2);
 				//console.log("Access" + body.access_token);
 				//console.log("response" + response);
