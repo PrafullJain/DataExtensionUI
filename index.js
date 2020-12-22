@@ -130,9 +130,9 @@ app.post('/PostData', (req, res) => {
             console.log(JSON.stringify(arr))
     res.render(__dirname +'/app/public/SFMC-DE.html',{DEName:arr});
 
-      const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html',{DEName:arr});
+      //const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html',{DEName:arr});
 
-        res.sendFile(ind2);
+       // res.sendFile(ind2);
         //console.log("Access" + body.access_token);
         //console.log("response" + response);
         //console.log(clientSec);
