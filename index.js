@@ -78,6 +78,9 @@ app.post('/PostData', (req, res) => {
 				//  res.send(clientSec);   
 			})
 			*/
+		  } catch (err) {
+      console.log(err);
+   }
 	
 });
 
