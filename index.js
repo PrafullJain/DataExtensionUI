@@ -44,6 +44,10 @@ const getToken = async (clientid, clientSecret, url) => {
 app.post('/PostData', (req, res) => {
 	try {
 		const { clientId, clientSecret, url } = req.body;
+		console.log(clientId);
+		console.log(clientSecret);
+		console.log(url);
+		
 		(async function(){
 
       const token = await getToken(clientId, clientSecret, url);
