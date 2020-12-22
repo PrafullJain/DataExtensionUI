@@ -128,7 +128,7 @@ app.post('/PostData', (req, res) => {
 
 
             console.log(JSON.stringify(arr))
-    res.render(__dirname +'/SFMC-DE.html',{DEName:arr});
+    res.render(__dirname +'/app/public/SFMC-DE.html',{DEName:arr});
 
       const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html',{DEName:arr});
 
