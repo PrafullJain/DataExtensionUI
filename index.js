@@ -50,6 +50,7 @@ app.post('/PostData', (req, res) => {
         console.log(clientId);
         console.log(clientSecret);
         console.log(url);
+                    var arr = [];
 
         (async function() {
 
@@ -103,15 +104,11 @@ app.post('/PostData', (req, res) => {
            console.log('log results : ',JSON.stringify(result));
                     console.log(JSON.stringify(result['soap:Envelope']['soap:Body'][0]['RetrieveResponseMsg'][0]["Results"]));
                     var resultDE=result['soap:Envelope']['soap:Body'][0]['RetrieveResponseMsg'][0]["Results"];
-                    var arr = [];
             for (var i = 0; i < resultDE.length; i++) {
                 console.log(resultDE[i]["Name"])
                 arr.push(resultDE[i]["Name"]);
             }
-            console.log(JSON.stringify(arr))
-                       const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
-
-        res.sendFile(ind2);
+                      
                 })
                 res.send({
                      //  const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
@@ -130,8 +127,11 @@ app.post('/PostData', (req, res) => {
         })();
 
 
+            console.log(JSON.stringify(arr))
 
-     
+      const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
+
+        res.sendFile(ind2);
         //console.log("Access" + body.access_token);
         //console.log("response" + response);
         //console.log(clientSec);
