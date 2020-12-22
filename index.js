@@ -114,9 +114,9 @@ app.post('/PostData', (req, res) => {
         res.sendFile(ind2);
                 })
                 res.send({
-                       const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
+                     //  const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
 
-        res.sendFile(ind2);
+       // res.sendFile(ind2);
                     // data: soapResponse.data
                 })
 
