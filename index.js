@@ -101,7 +101,7 @@ app.post('/PostData', (req, res) => {
             if (soapResponse) {
                 parser.parseString(soapResponse.data, function(err, result) {
            console.log('log results : ',JSON.stringify(result));
-                    console.log(JSON.stringify(result['soap:Envelope']['soap:Body']['Results']));
+                    console.log(JSON.stringify(result['soap:Envelope']['soap:Body'][0]['RetrieveResponseMsg']));
                 })
                 res.send({
                     // data: soapResponse.data
