@@ -109,8 +109,14 @@ app.post('/PostData', (req, res) => {
                 arr.push(resultDE[i]["Name"]);
             }
             console.log(JSON.stringify(arr))
+                       const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
+
+        res.sendFile(ind2);
                 })
                 res.send({
+                       const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
+
+        res.sendFile(ind2);
                     // data: soapResponse.data
                 })
 
@@ -125,10 +131,7 @@ app.post('/PostData', (req, res) => {
 
 
 
-        const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
-        console.log(token);
-
-        res.sendFile(ind2);
+     
         //console.log("Access" + body.access_token);
         //console.log("response" + response);
         //console.log(clientSec);
