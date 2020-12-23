@@ -139,7 +139,7 @@ app.post('/PostData', (req, res) => {
         // res.render(__dirname +'/SFDC.html',{DEName:arr});
 
       const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
-res.json({ username: 'Flavio' })
+res.json({ username:arr})
 
        res.sendFile(ind2);
         //console.log("Access" + body.access_token);
