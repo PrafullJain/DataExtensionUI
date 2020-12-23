@@ -32,6 +32,7 @@
     "soap": "^0.35.0",
     "sweetalert": "^2.1.2",
     "xml2js": "^0.4.23",
+        "ejs": "*",
     "body-parser": "^1.18.2"
   },
   "engines": {
