@@ -108,17 +108,18 @@ app.post('/PostData', (req, res) => {
                     console.log(JSON.stringify(result['soap:Envelope']['soap:Body'][0]['RetrieveResponseMsg'][0]["Results"]));
                     var resultDE=result['soap:Envelope']['soap:Body'][0]['RetrieveResponseMsg'][0]["Results"];
             for (var i = 0; i < resultDE.length; i++) {
-                console.log(resultDE[i]["Name"])
                 arr.push(resultDE[i]["Name"]);
             }
                       
                 })
+                /***********************************/
                 res.send({
                      //  const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
 
        // res.sendFile(ind2);
                     // data: soapResponse.data
                 })
+                /***********************************/
 
 
             }
@@ -139,7 +140,7 @@ app.post('/PostData', (req, res) => {
         // res.render(__dirname +'/SFDC.html',{DEName:arr});
 
       const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
-res.json({ username:arr})
+res.json({ username:JSON.Stringify(arr)})
 
        res.sendFile(ind2);
         //console.log("Access" + body.access_token);
