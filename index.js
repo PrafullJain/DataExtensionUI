@@ -110,7 +110,10 @@ app.post('/PostData', (req, res) => {
             for (var i = 0; i < resultDE.length; i++) {
                 arr.push(resultDE[i]["Name"]);
             }
-                      
+                        const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
+res.json({ username:JSON.Stringify(arr)})
+
+       res.sendFile(ind2);
                 })
                 /***********************************/
                 res.send({
@@ -139,10 +142,7 @@ app.post('/PostData', (req, res) => {
 
         // res.render(__dirname +'/SFDC.html',{DEName:arr});
 
-      const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
-res.json({ username:JSON.Stringify(arr)})
-
-       res.sendFile(ind2);
+    
         //console.log("Access" + body.access_token);
         //console.log("response" + response);
         //console.log(clientSec);
