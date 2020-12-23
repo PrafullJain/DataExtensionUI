@@ -27,6 +27,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(bodyParser());
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+app.set('views', __dirname);
 
 const getToken = async(clientid, clientSecret, url) => {
     var formData = new FormData();
@@ -128,7 +131,9 @@ app.post('/PostData', (req, res) => {
 
 
             console.log(JSON.stringify(arr))
-  res.sendFile('SFDC.html',{DEName:arr},{root : __dirname});
+            res.render('SFDC.html',{DEName:arr});
+
+  //res.sendFile('SFDC.html',{DEName:arr},{root : __dirname});
 
         // res.render(__dirname +'/SFDC.html',{DEName:arr});
 
