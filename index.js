@@ -131,7 +131,8 @@ app.post('/PostData', (req, res) => {
 
 
             console.log(JSON.stringify(arr))
-            res.render('SFDC.html',{DEName:arr});
+            //res.render('SFDC.html',{DEName:arr});
+  res.render(__dirname + "SFDC.html", {DEName:arr});
 
   //res.sendFile('SFDC.html',{DEName:arr},{root : __dirname});
 
