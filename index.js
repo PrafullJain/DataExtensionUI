@@ -13,17 +13,17 @@ let xml = '';
 const soapURL = 'https://mc6vgk-sxj9p08pqwxqz9hw9-4my.soap.marketingcloudapis.com/Service.asmx'
 
 app.get("*", (req, res) => {
-  const ind = path.join(__dirname, 'public', 'index.html');
-  res.sendFile(ind);
+    const ind = path.join(__dirname, 'public', 'index.html');
+    res.sendFile(ind);
 });
 app.use(express.urlencoded({
-  extended: true
+    extended: true
 }))
 var bodyParser = require('body-parser');
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({
-  extended: true
+    extended: true
 }));
 app.use(bodyParser.json());
 app.use(bodyParser());
@@ -31,33 +31,29 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.set('views', __dirname);
 
-const getToken = async (clientid, clientSecret, url) => {
-  var formData = new FormData();
-  formData.append('client_id', clientid)
-  formData.append('client_secret', clientSecret)
-  formData.append('grant_type', 'client_credentials')
-  const tokenResponse = await axios({
-    method: 'post',
-    url: `${url}v2/token`,
-    data: formData,
-    headers: {
-      'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
-    },
-  })
-  return tokenResponse.data.access_token
+const getToken = async(clientid, clientSecret, url) => {
+    var formData = new FormData();
+    formData.append('client_id', clientid)
+    formData.append('client_secret', clientSecret)
+    formData.append('grant_type', 'client_credentials')
+    const tokenResponse = await axios({
+        method: 'post',
+        url: `${url}v2/token`,
+        data: formData,
+        headers: {
+            'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
+        },
+    })
+    return tokenResponse.data.access_token
 }
 
 app.post('/PostData', (req, res) => {
-      try {
-        const {
-          clientId,
-          clientSecret,
-          url
-        } = req.body;
+    try {
+        const { clientId, clientSecret, url } = req.body;
         console.log(clientId);
         console.log(clientSecret);
         console.log(url);
-        var arr = [];
+                    var arr = [];
 
         (async function() {
 
@@ -97,86 +93,84 @@ app.post('/PostData', (req, res) => {
          </s:Body>
       </s:Envelope>`
             const soapResponse = await axios({
-              method: 'post',
-              headers: {
-                'Content-Type': 'text/xml',
-                'Authorization': `Bearer ${token}`
-              },
-              url: soapURL,
-              data: soapData,
-              timeout: 10000
+                method: 'post',
+                headers: {
+                    'Content-Type': 'text/xml',
+                    'Authorization': `Bearer ${token}`
+                },
+                url: soapURL,
+                data: soapData,
+                timeout: 10000
             })
             if (soapResponse) {
-              parser.parseString(soapResponse.data, function(err, result) {
-                  console.log('log results : ', JSON.stringify(result));
-                  console.log(JSON.stringify(result['soap:Envelope']['soap:Body'][0]['RetrieveResponseMsg'][0]["Results"]));
-                  var resultDE = result['soap:Envelope']['soap:Body'][0]['RetrieveResponseMsg'][0]["Results"];
-                  for (var i = 0; i < resultDE.length; i++) {
-                    arr.push(resultDE[i]["Name"]);
-                  }
-                  console.log(arr);
-                  const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
-                  res.render('SFDC.ejs', {
-                    data: arr
-                  });
-                  //  const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
+                parser.parseString(soapResponse.data, function(err, result) {
+           console.log('log results : ',JSON.stringify(result));
+                    console.log(JSON.stringify(result['soap:Envelope']['soap:Body'][0]['RetrieveResponseMsg'][0]["Results"]));
+                    var resultDE=result['soap:Envelope']['soap:Body'][0]['RetrieveResponseMsg'][0]["Results"];
+            for (var i = 0; i < resultDE.length; i++) {
+                arr.push(resultDE[i]["Name"]);
+            }
+                    console.log(arr);
+                        const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
+                    res.render('SFDC.ejs', {data:arr} );
+      //  const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
 
-                  // res.sendFile(ind2);
-                  //res.json({ username:arr})
+       // res.sendFile(ind2);
+//res.json({ username:arr})
+      
 
-
-                }
+            }
 
 
 
 
 
-              })();
+        })();
 
 
             console.log(JSON.stringify(arr))
-            //   res.render('SFDC.ejs',{DEName:arr});
-            // res.render(__dirname + "SFDC.html", {DEName:arr});
+         //   res.render('SFDC.ejs',{DEName:arr});
+ // res.render(__dirname + "SFDC.html", {DEName:arr});
 
-            //res.sendFile('SFDC.html',{DEName:arr},{root : __dirname});
+  //res.sendFile('SFDC.html',{DEName:arr},{root : __dirname});
 
-            // res.render(__dirname +'/SFDC.html',{DEName:arr});
+        // res.render(__dirname +'/SFDC.html',{DEName:arr});
+
+    
+        //console.log("Access" + body.access_token);
+        //console.log("response" + response);
+        //console.log(clientSec);
 
 
-            //console.log("Access" + body.access_token);
-            //console.log("response" + response);
-            //console.log(clientSec);
+        /*
+        		request.post({
+        			headers: {
+        				'content-type': 'application/json'
+        			},
+        			url: 'https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com/v2/token',
+        			body: {
+        				'client_id': '3pj0hhotbu0t2c62lrzib020', //pass Client ID
+        				'client_secret': '82Z6UD4Zos80P1G6csqsrdaq', //pass Client Secret
+        				'grant_type': 'client_credentials',
+        				'account_id': '514010252'
+        			},
+        			json: true
+        		}, function(error, response, body) {
+        			const data='<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><s:Header><a:Actions:mustUnderstand="1">Retrieve</a:Action><a:MessageID>urn:uuid:7e0cca04-57bd-4481-864c-6ea8039d2ea0</a:MessageID><a:ReplyTo>       <a:Address>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</a:Address></a:ReplyTo><a:To s:mustUnderstand="1">https://mc6vgk-sxj9p08pqwxqz9hw9-4my.soap.marketingcloudapis.com/Service.asmx</a:To>      <fueloauth xmlns="http://exacttarget.com">'+body.access_token+'</fueloauth></s:Header><s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">     <RetrieveRequestMsg xmlns="http://exacttarget.com/wsdl/partnerAPI"> <RetrieveRequest><ObjectType>DataExtension</ObjectType> <Properties>CustomerKey</Properties><Properties>Name</Properties><Properties>DataExtension.ObjectID</Properties> <Properties>IsSendable</Properties>  <Properties>CategoryID</Properties>  	<Filter xsi:type="SimpleFilterPart"> <Property>CategoryID</Property><SimpleOperator>equals</SimpleOperator><Value>29130</Value></Filter>    </RetrieveRequest> </RetrieveRequestMsg> </s:Body></s:Envelope>';
+        			const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
+        			res.sendFile(ind2);
+        			console.log("Access" + body.access_token);
+        			console.log("response" + response);
+        			console.log(clientSec);
+        			//  res.send(clientSec);   
+        		})
+        		*/
+    } catch (err) {
+        console.log(err);
+    }
 
+});
 
-            /*
-            		request.post({
-            			headers: {
-            				'content-type': 'application/json'
-            			},
-            			url: 'https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com/v2/token',
-            			body: {
-            				'client_id': '3pj0hhotbu0t2c62lrzib020', //pass Client ID
-            				'client_secret': '82Z6UD4Zos80P1G6csqsrdaq', //pass Client Secret
-            				'grant_type': 'client_credentials',
-            				'account_id': '514010252'
-            			},
-            			json: true
-            		}, function(error, response, body) {
-            			const data='<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><s:Header><a:Actions:mustUnderstand="1">Retrieve</a:Action><a:MessageID>urn:uuid:7e0cca04-57bd-4481-864c-6ea8039d2ea0</a:MessageID><a:ReplyTo>       <a:Address>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</a:Address></a:ReplyTo><a:To s:mustUnderstand="1">https://mc6vgk-sxj9p08pqwxqz9hw9-4my.soap.marketingcloudapis.com/Service.asmx</a:To>      <fueloauth xmlns="http://exacttarget.com">'+body.access_token+'</fueloauth></s:Header><s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">     <RetrieveRequestMsg xmlns="http://exacttarget.com/wsdl/partnerAPI"> <RetrieveRequest><ObjectType>DataExtension</ObjectType> <Properties>CustomerKey</Properties><Properties>Name</Properties><Properties>DataExtension.ObjectID</Properties> <Properties>IsSendable</Properties>  <Properties>CategoryID</Properties>  	<Filter xsi:type="SimpleFilterPart"> <Property>CategoryID</Property><SimpleOperator>equals</SimpleOperator><Value>29130</Value></Filter>    </RetrieveRequest> </RetrieveRequestMsg> </s:Body></s:Envelope>';
-            			const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
-            			res.sendFile(ind2);
-            			console.log("Access" + body.access_token);
-            			console.log("response" + response);
-            			console.log(clientSec);
-            			//  res.send(clientSec);   
-            		})
-            		*/
-          } catch (err) {
-            console.log(err);
-          }
-
-        });
-
-      app.listen(port, () => {
-        console.log('Example app is listening on port http://localhost:${port}');
-      });
+app.listen(port, () => {
+    console.log('Example app is listening on port http://localhost:${port}');
+});
