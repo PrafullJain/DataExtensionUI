@@ -117,54 +117,8 @@ app.post('/PostData', (req, res) => {
 
        // res.sendFile(ind2);
 //res.json({ username:arr})
-      
-
-            }
-
-
-
-
-
+                 }
         })();
-
-
-            console.log(JSON.stringify(arr))
-         //   res.render('SFDC.ejs',{DEName:arr});
- // res.render(__dirname + "SFDC.html", {DEName:arr});
-
-  //res.sendFile('SFDC.html',{DEName:arr},{root : __dirname});
-
-        // res.render(__dirname +'/SFDC.html',{DEName:arr});
-
-    
-        //console.log("Access" + body.access_token);
-        //console.log("response" + response);
-        //console.log(clientSec);
-
-
-        /*
-        		request.post({
-        			headers: {
-        				'content-type': 'application/json'
-        			},
-        			url: 'https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com/v2/token',
-        			body: {
-        				'client_id': '3pj0hhotbu0t2c62lrzib020', //pass Client ID
-        				'client_secret': '82Z6UD4Zos80P1G6csqsrdaq', //pass Client Secret
-        				'grant_type': 'client_credentials',
-        				'account_id': '514010252'
-        			},
-        			json: true
-        		}, function(error, response, body) {
-        			const data='<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><s:Header><a:Actions:mustUnderstand="1">Retrieve</a:Action><a:MessageID>urn:uuid:7e0cca04-57bd-4481-864c-6ea8039d2ea0</a:MessageID><a:ReplyTo>       <a:Address>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</a:Address></a:ReplyTo><a:To s:mustUnderstand="1">https://mc6vgk-sxj9p08pqwxqz9hw9-4my.soap.marketingcloudapis.com/Service.asmx</a:To>      <fueloauth xmlns="http://exacttarget.com">'+body.access_token+'</fueloauth></s:Header><s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">     <RetrieveRequestMsg xmlns="http://exacttarget.com/wsdl/partnerAPI"> <RetrieveRequest><ObjectType>DataExtension</ObjectType> <Properties>CustomerKey</Properties><Properties>Name</Properties><Properties>DataExtension.ObjectID</Properties> <Properties>IsSendable</Properties>  <Properties>CategoryID</Properties>  	<Filter xsi:type="SimpleFilterPart"> <Property>CategoryID</Property><SimpleOperator>equals</SimpleOperator><Value>29130</Value></Filter>    </RetrieveRequest> </RetrieveRequestMsg> </s:Body></s:Envelope>';
-        			const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
-        			res.sendFile(ind2);
-        			console.log("Access" + body.access_token);
-        			console.log("response" + response);
-        			console.log(clientSec);
-        			//  res.send(clientSec);   
-        		})
-        		*/
     } catch (err) {
         console.log(err);
     }
