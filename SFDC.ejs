@@ -12,7 +12,16 @@
   var html="";
   for(i=0;i<array.length;i++)
   {
-   console.log(array[i])
+  
+  if(array[i]==="Data Extensions")
+  {
+  html+="<img style="vertical-align: middle;" class="15" src="https://lh3.googleusercontent.com/proxy/zh2kA5X56sycUcBgiodQPKMa_VrlbDnR9l5S-lMiTcsHPN6dVH4kwp0SZOIGdVl5DZh5FkGg4celS7HA1lhGEVIrZBVvLh7xzyAlPxEBZRxdrGPKh_cOQJDhXz_KfFVsczxItMiF0DyEApULNuo6YXE" width="36"
+            height="32">"+array[i];
+  }else
+  {
+   html+="<li>"+array[i]+"</li>";
+   html+="<br>"
+  }
    
   }
 
