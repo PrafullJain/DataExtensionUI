@@ -6,14 +6,11 @@
       <p id="de"></p>
        <script>
 
-  var DEArray=  '<%- JSON.stringify(data) %>'
+  var DEArray=  '<%- data %>'
   var html="";
-  for(i=0;i<DEArray[0].length;i++)
+  for(i=0;i<DEArray.length;i++)
   {
-   if(i>0)
-   {
-       alert(DEArray[i])
-   }
+   console.log(DEArray[i])
   }
 
   document.getElementById("de").innerHTML=DEArray[0];
