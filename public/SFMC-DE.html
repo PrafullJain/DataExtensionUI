@@ -14,15 +14,20 @@ DE=data;
 
 })
   .done(function(data) {
-      
+      DE=data
         console.log(data)
    
   })
   .fail(function() {
       //error (bad connection)
 });
+    
+    function doIt()
+    {
+      alert(DE);
+    }
   </script>
-<body>
+<body onload="doIt">
   <h1>Hi</h1>
   <p id='s'></p>
   </body>
