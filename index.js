@@ -112,10 +112,10 @@ app.post('/PostData', (req, res) => {
             }
                     console.log(arr);
                         const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
-//res.json({ username:arr})
-                        res.end(JSON.stringify({ username: arr }));
+res.json({ username:arr})
+        //                res.end(JSON.stringify({ username: arr }));
 
-       res.sendFile(ind2);
+      // res.sendFile(ind2);
 
                 })
                 /***********************************/
