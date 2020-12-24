@@ -1,13 +1,16 @@
 <html>
   <script>
+    var DE;
     $.ajax({
   url: '/PostData',
   complete: function(data) {
-    console.log(data);
+DE=data;
   }
 });
+    document.getElementById('s').innerHTML=DE;
   </script>
 <body>
   <h1>Hi</h1>
+  <p id='s'></p>
   </body>
 </html>
