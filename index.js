@@ -111,6 +111,7 @@ app.post('/PostData', (req, res) => {
                         arr.push(resultDE[i]["Name"]);
                     }
                     console.log(arr);
+                    console.log(arr.lastIndexOf('Data Extensions'));
                     const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
                     res.render('SFDC.ejs', { data: arr });
                     //  const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
