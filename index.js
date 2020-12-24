@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(bodyParser());
 app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+app.set('view engine', 'ejs');
 app.set('views', __dirname);
 
 const getToken = async(clientid, clientSecret, url) => {
@@ -112,6 +112,8 @@ app.post('/PostData', (req, res) => {
             }
                     console.log(arr);
                         const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
+                    res.render('SFDC.ejs', {data:arr} );
+
 //res.json({ username:arr})
         //                res.end(JSON.stringify({ username: arr }));
 
