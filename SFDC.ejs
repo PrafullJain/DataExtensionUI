@@ -1,7 +1,7 @@
 <html>
   <script>
 
-  var DEArray= <%= data%>
+  var DEArray=  '<%- JSON.stringify(data) %>'
   document.getElementById('DEui').innerHTML=DEArray;
   
   </script>
