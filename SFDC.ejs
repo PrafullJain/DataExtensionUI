@@ -1,9 +1,13 @@
 <html>
-<body>
   <script>
-  var DEArray=<%= data%>
+  function load()
+  {
+  var DEArray= <%= data%>
   document.getElementById('DEui').innerHTML=DEArray;
+  }
   </script>
+<body onload="load">
+
     <h1>Hi</h1>
       <p id="DEui"></p>
 </body>
