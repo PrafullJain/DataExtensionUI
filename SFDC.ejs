@@ -2,7 +2,9 @@
 <body>
   
     <h1>Hi</h1>
-      <%= data%>
+      <% data.forEach(function(dat) { %>
+        <li><%= dat %></li>
+    <% }); %>
   </ul>
 </body>
 
