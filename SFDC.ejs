@@ -6,11 +6,13 @@
       <p id="de"></p>
        <script>
 
-  var DEArray=  '<%- data %>'
+  var DEArray=  '<%- data %>';
+  var array = JSON.parse("[" + DEArray + "]");
+
   var html="";
-  for(i=0;i<DEArray.length;i++)
+  for(i=0;i<array.length;i++)
   {
-   console.log(DEArray[i])
+   console.log(array[i])
    
   }
 
