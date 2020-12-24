@@ -53,7 +53,7 @@ app.post('/PostData', (req, res) => {
         console.log(clientId);
         console.log(clientSecret);
         console.log(url);
-                    var arr = [];
+        var arr = [];
 
         (async function() {
 
@@ -104,20 +104,21 @@ app.post('/PostData', (req, res) => {
             })
             if (soapResponse) {
                 parser.parseString(soapResponse.data, function(err, result) {
-           console.log('log results : ',JSON.stringify(result));
+                    console.log('log results : ', JSON.stringify(result));
                     console.log(JSON.stringify(result['soap:Envelope']['soap:Body'][0]['RetrieveResponseMsg'][0]["Results"]));
-                    var resultDE=result['soap:Envelope']['soap:Body'][0]['RetrieveResponseMsg'][0]["Results"];
-            for (var i = 0; i < resultDE.length; i++) {
-                arr.push(resultDE[i]["Name"]);
-            }
+                    var resultDE = result['soap:Envelope']['soap:Body'][0]['RetrieveResponseMsg'][0]["Results"];
+                    for (var i = 0; i < resultDE.length; i++) {
+                        arr.push(resultDE[i]["Name"]);
+                    }
                     console.log(arr);
-                        const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
-                    res.render('SFDC.ejs', {data:arr} );
-      //  const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
+                    const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
+                    res.render('SFDC.ejs', { data: arr });
+                    //  const ind2 = path.join(__dirname, 'public', 'SFMC-DE.html');
 
-       // res.sendFile(ind2);
-//res.json({ username:arr})
-                 }
+                    // res.sendFile(ind2);
+                    //res.json({ username:arr})
+                })
+            }
         })();
     } catch (err) {
         console.log(err);
