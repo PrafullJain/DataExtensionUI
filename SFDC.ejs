@@ -7,7 +7,15 @@
        <script>
 
   var DEArray=  '<%- JSON.stringify(data) %>'
-  alert(DEArray)
+  var html="";
+  for(i=0;i<DEArray.length;i++)
+  {
+   if(i>0)
+   {
+       alert(DEArray[i])
+   }
+  }
+
   document.getElementById("de").innerHTML=DEArray;
   
   </script>
