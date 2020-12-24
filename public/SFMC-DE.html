@@ -8,6 +8,19 @@ DE=data;
   }
 });
     document.getElementById('s').innerHTML=DE;
+    console.log(DE)
+    
+    $.post( "/PostData", function(loginData) {
+
+})
+  .done(function(data) {
+      
+        console.log(data)
+   
+  })
+  .fail(function() {
+      //error (bad connection)
+});
   </script>
 <body>
   <h1>Hi</h1>
