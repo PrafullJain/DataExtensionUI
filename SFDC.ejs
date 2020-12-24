@@ -1,20 +1,11 @@
 <html>
 <body>
-  
+  <script>
+  var DEArray=<%= data%>
+  document.getElementById('DEui').innerHTML=DEArray;
+  </script>
     <h1>Hi</h1>
-      <% data.forEach(function(dat) { %>
-        if(dat=='Data Extensions')
-        {%>
-                <li><img style="display: inline; vertical-align: middle;" class="15" src="https://members.s11.exacttarget.com/App_Themes/Default/images/tree/icons/folder.gif">
-                <%= dat %></li>
-
-        <% }else
-        }%>
-        <li>
-        <li>&nbsp;&nbsp;<%= dat %></li>
-        </li>
-    <% }); %>
-  </ul>
+      <p id="DEui"></p>
 </body>
 
 </html>
